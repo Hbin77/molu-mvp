@@ -1,0 +1,181 @@
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css');
+@import url('https://fonts.googleapis.com/css2?family=Gaegu:wght@300;400;700&family=Nanum+Myeongjo:wght@400;700;800&family=Gowun+Batang:wght@400;700&family=Nanum+Pen+Script&display=swap');
+@import "tailwindcss";
+
+@theme inline {
+  --color-cream-50: #FDFAF3;
+  --color-cream-100: #FBF6EC;
+  --color-cream-200: #F5EDDF;
+  --color-cream-300: #EFE2CC;
+  --color-peach-200: #EBD9C0;
+  --color-peach-300: #E0C2A4;
+  --color-peach-400: #D5A887;
+  --color-brown-400: #B07A55;
+  --color-brown-500: #8B5A3C;
+  --color-brown-600: #6B4226;
+  --color-brown-700: #4A2E18;
+  --color-brown-800: #2E1B0E;
+  --color-ink: #1F140A;
+  --color-accent-amber: #C97A3E;
+  --color-accent-amber-dark: #A8632F;
+  --color-warn-bg: #FBE7DC;
+  --color-warn-fg: #B33A1D;
+  --color-ok-bg: #E2EAD3;
+  --color-ok-fg: #5C7A3A;
+
+  --font-cal: 'Gaegu', 'Nanum Pen Script', cursive;
+  --font-display: 'Nanum Myeongjo', 'Gowun Batang', serif;
+  --font-serif: 'Gowun Batang', 'Nanum Myeongjo', serif;
+  --font-ui: 'Pretendard', -apple-system, 'Apple SD Gothic Neo', system-ui, sans-serif;
+}
+
+:root {
+  --muted: rgba(74, 46, 24, 0.55);
+  --muted-strong: rgba(74, 46, 24, 0.75);
+  --line: rgba(74, 46, 24, 0.12);
+  --line-strong: rgba(74, 46, 24, 0.22);
+  --paper: #FBF6EC;
+  --paper-2: #F5EDDF;
+
+  --t-d1: clamp(72px, 11vw, 156px);
+  --t-d2: clamp(40px, 5.4vw, 76px);
+  --t-d3: clamp(28px, 3.4vw, 44px);
+  --gutter: clamp(20px, 4vw, 56px);
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--color-cream-100);
+  color: var(--color-brown-700);
+  font-family: var(--font-ui);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+.paper-bg {
+  background-color: var(--color-cream-100);
+  background-image:
+    radial-gradient(rgba(139, 90, 60, 0.04) 1px, transparent 1px),
+    radial-gradient(rgba(139, 90, 60, 0.03) 1px, transparent 1px);
+  background-size: 3px 3px, 7px 7px;
+  background-position: 0 0, 1px 2px;
+}
+
+.container-page {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+  width: 100%;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-ui);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  color: var(--muted-strong);
+  text-transform: uppercase;
+}
+.eyebrow .dot {
+  width: 6px; height: 6px; border-radius: 99px;
+  background: var(--color-accent-amber);
+}
+
+.h-display {
+  font-family: var(--font-display);
+  font-weight: 800;
+  color: var(--color-brown-700);
+  letter-spacing: -0.035em;
+  line-height: 1.08;
+  margin: 0;
+}
+
+.lead {
+  font-family: var(--font-ui);
+  font-size: clamp(15px, 1.15vw, 18px);
+  line-height: 1.65;
+  color: var(--muted-strong);
+  letter-spacing: -0.01em;
+}
+
+.accent { color: var(--color-accent-amber-dark); }
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 52px;
+  padding: 0 22px;
+  border-radius: 16px;
+  border: 0;
+  font-family: var(--font-ui);
+  font-weight: 700;
+  font-size: 15.5px;
+  letter-spacing: -0.01em;
+  cursor: pointer;
+  transition: transform 120ms ease, box-shadow 120ms ease, background 120ms ease;
+  min-height: 44px;
+}
+.btn:focus-visible { outline: 3px solid var(--color-accent-amber); outline-offset: 2px; }
+
+.nav-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 10px 8px;
+  color: var(--color-brown-700);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  border-radius: 8px;
+}
+.nav-link:hover { background: rgba(74, 46, 24, 0.05); }
+.nav-link:focus-visible {
+  outline: 3px solid var(--color-accent-amber);
+  outline-offset: 2px;
+}
+.btn--primary { background: var(--color-brown-500); color: #fff; box-shadow: 0 4px 14px rgba(74,46,24,0.22); }
+.btn--primary:hover { background: var(--color-brown-600); }
+.btn--accent  { background: var(--color-accent-amber); color: #fff; box-shadow: 0 4px 14px rgba(201,122,62,0.28); }
+.btn--accent:hover  { background: var(--color-accent-amber-dark); }
+.btn--ghost   { background: transparent; color: var(--color-brown-700); border: 1.5px solid var(--line-strong); }
+.btn--ghost:hover { background: rgba(74,46,24,0.05); }
+
+@keyframes shimmer {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 1; }
+}
+.shimmer { animation: shimmer 1.6s ease-in-out infinite; }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.fade  { animation: fadeUp 600ms ease-out both; }
+.fade-2 { animation: fadeUp 600ms ease-out 120ms both; }
+
+.hide-on-small { display: flex; }
+@media (max-width: 768px) {
+  .hide-on-small { display: none; }
+}
+
+.hero-grid {
+  grid-template-columns: 1.05fr 0.95fr;
+}
+@media (max-width: 960px) {
+  .hero-grid {
+    grid-template-columns: 1fr;
+  }
+  .hero-mock {
+    min-height: auto !important;
+    padding-top: 24px;
+  }
+}
