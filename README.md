@@ -55,6 +55,15 @@ curl -I http://127.0.0.1:3000/      # HTTP/1.1 200 OK 확인
 
 이제 컨테이너는 호스트의 `127.0.0.1:3000`에만 노출됩니다 (외부 인터넷 직접 노출 X).
 
+> **포트 충돌이 날 때** — 호스트의 다른 컨테이너가 이미 3000을 잡고 있으면
+> `.env` 파일에 `HOST_PORT=3300` 같은 식으로 지정 후 다시 띄우세요.
+> ```bash
+> cp .env.example .env && nano .env     # HOST_PORT=3300 으로 수정
+> docker compose down && docker compose up -d
+> curl -I http://127.0.0.1:3300/
+> ```
+> 이 경우 아래 cloudflared ingress의 service URL도 `http://localhost:3300`로 맞춰주세요.
+
 ### 4) Cloudflare Tunnel ingress에 서브도메인 추가
 
 호스트에서 cloudflared가 이미 도는 상태라면, `~/.cloudflared/config.yml` 또는 `/etc/cloudflared/config.yml`을 편집합니다:

@@ -8,7 +8,9 @@ services:
     # not a directly-exposed port. The host's cloudflared daemon
     # proxies mvp.likelionscnu.site → http://localhost:3000.
     ports:
-      - "127.0.0.1:3000:3000"
+      # Host port is overridable via .env (HOST_PORT=...). Default 3000.
+      # Always binds to loopback only — public edge is Cloudflare Tunnel.
+      - "127.0.0.1:${HOST_PORT:-3000}:3000"
     environment:
       NODE_ENV: production
       NEXT_TELEMETRY_DISABLED: "1"
