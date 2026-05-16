@@ -1,0 +1,25 @@
+services:
+  web:
+    build: .
+    image: molu-mvp:latest
+    container_name: molu-mvp
+    restart: unless-stopped
+    # Bind to loopback only — the public edge is Cloudflare Tunnel,
+    # not a directly-exposed port. The host's cloudflared daemon
+    # proxies mvp.likelionscnu.site → http://localhost:3000.
+    ports:
+      - "127.0.0.1:3000:3000"
+    environment:
+      NODE_ENV: production
+      NEXT_TELEMETRY_DISABLED: "1"
+    healthcheck:
+      test: ["CMD", "wget", "-q", "--spider", "http://127.0.0.1:3000/"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 15s
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
