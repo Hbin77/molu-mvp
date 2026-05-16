@@ -179,3 +179,32 @@ html, body {
     padding-top: 24px;
   }
 }
+
+.sec {
+  padding: 100px 0;
+}
+.sec--paper { background: var(--paper); }
+.sec--cream2 { background: var(--paper-2); }
+.sec--dark { background: var(--color-brown-700); color: #fff; }
+.sec--dark .h-display { color: #fff; }
+.sec--dark .eyebrow { color: var(--color-peach-300); }
+.sec--dark .lead { color: rgba(255, 255, 255, 0.72); }
+
+.elev-1 {
+  box-shadow: 0 1px 0 rgba(74, 46, 24, 0.04), 0 8px 22px rgba(74, 46, 24, 0.08);
+}
+.elev-2 {
+  box-shadow: 0 1px 0 rgba(74, 46, 24, 0.04), 0 14px 36px rgba(74, 46, 24, 0.18);
+}
+
+.hide-scroll::-webkit-scrollbar { display: none; }
+.hide-scroll { scrollbar-width: none; }
+
+@media (max-width: 768px) {
+  .sec { padding: 64px 0; }
+  .grid-3, .grid-4, .grid-5 { grid-template-columns: 1fr !important; }
+  .grid-2 { grid-template-columns: 1fr !important; }
+  .feature-row { grid-template-columns: 1fr !important; direction: ltr !important; }
+  .feature-row > div { direction: ltr !important; }
+  .pricing-grid { grid-template-columns: 1fr !important; }
+}
