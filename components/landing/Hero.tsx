@@ -245,9 +245,7 @@ export function Hero() {
             </div>
           </div>
 
-          <div style={{ transform: "scale(0.82)", transformOrigin: "center" }}>
-            <PhoneMockup />
-          </div>
+          <PhoneMockup />
         </div>
       </div>
 
