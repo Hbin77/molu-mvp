@@ -64,12 +64,12 @@ curl -I http://127.0.0.1:3000/      # HTTP/1.1 200 OK 확인
 > ```
 > 이 경우 아래 cloudflared ingress의 service URL도 `http://localhost:3300`로 맞춰주세요.
 
-> **백엔드(`molu-api`)와 연결할 때** — `.env`에 `NEXT_PUBLIC_API_BASE=https://api.molu.likelionscnu.site`를
-> 추가하고 다시 빌드하세요. 이 값은 client bundle에 **build time**에 inline됩니다 (runtime 변경 안 됨).
-> ```bash
-> echo 'NEXT_PUBLIC_API_BASE=https://api.molu.likelionscnu.site' >> .env
-> docker compose up -d --build       # rebuild required
-> ```
+> **백엔드(`molu-api`)와 연결할 때** — 백엔드는 **외부 노출 안 함**. 두 컨테이너가 공유
+> docker 네트워크 `molu-net`에 함께 들어가고, Next.js가 서버 사이드에서 `/api/v1/*`을
+> 컨테이너 이름으로 프록시합니다 (CORS 없음, public 엔드포인트 없음).
+>
+> 사전 1회: `docker network create molu-net` (이미 있으면 OK).
+> 자세한 순서는 [`molu-api` README](https://github.com/Hbin77/molu-api#README) 참조.
 
 ### 4) Cloudflare Tunnel ingress에 서브도메인 추가
 

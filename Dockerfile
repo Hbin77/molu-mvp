@@ -13,11 +13,8 @@ WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
-# NEXT_PUBLIC_* must be present at build time — they're inlined into the
-# client bundle. docker-compose passes this via build.args.
-ARG NEXT_PUBLIC_API_BASE
-ENV NEXT_PUBLIC_API_BASE=$NEXT_PUBLIC_API_BASE
-
+# Backend URL is server-side only (used by next.config.ts rewrites at runtime),
+# so no NEXT_PUBLIC_* build-args needed — just compose `environment`.
 ENV NEXT_TELEMETRY_DISABLED=1
 RUN npm run build
 

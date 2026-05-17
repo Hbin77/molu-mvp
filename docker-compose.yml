@@ -2,23 +2,18 @@ services:
   web:
     build:
       context: .
-      args:
-        # NEXT_PUBLIC_* must be present at build time so it's embedded into
-        # the static client bundle. Reads from .env on the host.
-        NEXT_PUBLIC_API_BASE: ${NEXT_PUBLIC_API_BASE:-https://api.molu.likelionscnu.site}
     image: molu-mvp:latest
     container_name: molu-mvp
     restart: unless-stopped
-    # Bind to loopback only — the public edge is Cloudflare Tunnel,
-    # not a directly-exposed port. The host's cloudflared daemon
-    # proxies mvp.likelionscnu.site → http://localhost:3000.
+    # Bind to loopback only — the public edge is Cloudflare Tunnel.
     ports:
-      # Host port is overridable via .env (HOST_PORT=...). Default 3000.
-      # Always binds to loopback only — public edge is Cloudflare Tunnel.
       - "127.0.0.1:${HOST_PORT:-3000}:3000"
     environment:
       NODE_ENV: production
       NEXT_TELEMETRY_DISABLED: "1"
+      # Where Next.js (server-side) proxies /api/v1/* to. Reaches the
+      # molu-api container over the shared `molu-net` docker network.
+      API_INTERNAL_URL: ${API_INTERNAL_URL:-http://molu-api:8000}
     healthcheck:
       test: ["CMD", "wget", "-q", "--spider", "http://127.0.0.1:3000/"]
       interval: 30s
@@ -30,3 +25,11 @@ services:
       options:
         max-size: "10m"
         max-file: "3"
+    networks:
+      - default
+      - molu-net
+
+networks:
+  molu-net:
+    external: true
+    name: molu-net

@@ -1,7 +1,9 @@
 import type { DiagnosisError, DiagnosisResponse } from "@/lib/schema";
 
-const API_BASE =
-  process.env.NEXT_PUBLIC_API_BASE ?? "https://api.molu.likelionscnu.site";
+// Browser hits this Next.js origin; next.config.ts `rewrites` forwards
+// /api/v1/* to the molu-api container over the internal docker network.
+// No CORS, no public backend exposure.
+const API_BASE = "";
 
 export async function diagnose(
   file: File,
