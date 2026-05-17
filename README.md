@@ -64,6 +64,13 @@ curl -I http://127.0.0.1:3000/      # HTTP/1.1 200 OK 확인
 > ```
 > 이 경우 아래 cloudflared ingress의 service URL도 `http://localhost:3300`로 맞춰주세요.
 
+> **백엔드(`molu-api`)와 연결할 때** — `.env`에 `NEXT_PUBLIC_API_BASE=https://api.molu.likelionscnu.site`를
+> 추가하고 다시 빌드하세요. 이 값은 client bundle에 **build time**에 inline됩니다 (runtime 변경 안 됨).
+> ```bash
+> echo 'NEXT_PUBLIC_API_BASE=https://api.molu.likelionscnu.site' >> .env
+> docker compose up -d --build       # rebuild required
+> ```
+
 ### 4) Cloudflare Tunnel ingress에 서브도메인 추가
 
 호스트에서 cloudflared가 이미 도는 상태라면, `~/.cloudflared/config.yml` 또는 `/etc/cloudflared/config.yml`을 편집합니다:

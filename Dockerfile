@@ -12,6 +12,12 @@ FROM node:20-alpine AS builder
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
+
+# NEXT_PUBLIC_* must be present at build time — they're inlined into the
+# client bundle. docker-compose passes this via build.args.
+ARG NEXT_PUBLIC_API_BASE
+ENV NEXT_PUBLIC_API_BASE=$NEXT_PUBLIC_API_BASE
+
 ENV NEXT_TELEMETRY_DISABLED=1
 RUN npm run build
 

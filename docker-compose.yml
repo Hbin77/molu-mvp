@@ -1,6 +1,11 @@
 services:
   web:
-    build: .
+    build:
+      context: .
+      args:
+        # NEXT_PUBLIC_* must be present at build time so it's embedded into
+        # the static client bundle. Reads from .env on the host.
+        NEXT_PUBLIC_API_BASE: ${NEXT_PUBLIC_API_BASE:-https://api.molu.likelionscnu.site}
     image: molu-mvp:latest
     container_name: molu-mvp
     restart: unless-stopped
