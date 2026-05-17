@@ -12,7 +12,7 @@ export function PhoneMockup() {
       alt="몰루? 앱 스플래시 화면 — AI THAT SEES WHAT YOU SEE · 방법을 알려줄게."
       style={{
         display: "block",
-        width: "min(420px, 100%)",
+        width: "min(360px, 100%)",
         height: "auto",
         filter: "drop-shadow(0 30px 60px rgba(74, 46, 24, 0.22))",
       }}

@@ -154,7 +154,9 @@ export function Hero() {
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
-            minHeight: 760,
+            minHeight: 720,
+            paddingRight: 8,
+            paddingLeft: 8,
           }}
         >
           <div
@@ -177,7 +179,7 @@ export function Hero() {
             style={{
               position: "absolute",
               top: 30,
-              right: 0,
+              right: 16,
               padding: "6px 14px",
               background: "var(--color-cream-200)",
               border: "1.5px solid rgba(74,46,24,0.4)",
@@ -186,6 +188,8 @@ export function Hero() {
               fontWeight: 700,
               letterSpacing: "0.2em",
               color: "var(--color-brown-700)",
+              whiteSpace: "nowrap",
+              zIndex: 2,
             }}
           >
             SCREEN 01 · SPLASH
